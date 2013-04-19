@@ -1,0 +1,10 @@
+text.returns[void]: Return type
+text.class[..]: Class name
+text.pointer_name[..]: Pointer to function name
+text.args[..]: Function arguments
+.
+// To declare
+^ returns $ (^ class $::*^ pointer_name $)( ^args $ );
+
+// To call
+(this->*^ pointer_name $)();

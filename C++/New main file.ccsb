@@ -1,0 +1,82 @@
+checkbox.string[on]: string
+checkbox.vector: vector
+checkbox.list: list
+checkbox.deque: deque
+checkbox.set: set
+checkbox.map: map
+checkbox.iosfwd: iosfwd
+checkbox.iostream[on]: iostream (inc. cout etc.)
+checkbox.fstream: fstream
+checkbox.sstream: sstream
+checkbox.algorithm: algorithm (swap etc.)
+checkbox.functional: functional (bind1st etc.)
+checkbox.cassert: cassert
+checkbox.cstdlib: cstdlib
+checkbox.cstdio: cstdio
+checkbox.memory: memory
+checkbox.windows: windows.h
+checkbox.tchar: tchar.h
+checkbox.wxwidgets: wxwidgets.h
+.
+^ string ?
+#include <string>
+$
+^ vector ?
+#include <vector>
+$
+^ list ?
+#include <list>
+$
+^ deque ?
+#include <deque>
+$
+^ set ?
+#include <set>
+$
+^ map ?
+#include <map>
+$
+^ iosfwd ?
+#include <iosfwd>
+$
+^ iostream ?
+#include <iostream>
+$
+^ fstream ?
+#include <fstream>
+$
+^ sstream ?
+#include <sstream>
+$
+^ algorithm ?
+#include <algorithm>
+$
+^ functional ?
+#include <functional>
+$
+^ cassert ?
+#include <cassert>
+$
+^ cstdlib ?
+#include <cstdlib>
+$
+^ cstdio ?
+#include <cstdio>
+$
+^ memory ?
+#include <memory>
+$
+^ windows ?
+#include <windows.h>
+$
+^ tchar ?
+#include <tchar.h>
+$
+^ wxwidgets ?
+#include <wx/wx.h>
+$
+
+int main( int argc, char * argv[] )
+{
+	return 0;
+}

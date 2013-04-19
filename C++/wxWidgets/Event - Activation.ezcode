@@ -1,0 +1,18 @@
+text.class[..]: Class name
+.
+// For .h class definition
+	void on_activate( wxActivateEvent & event );
+
+// For event table
+	EVT_ACTIVATE( ^class$::on_activate )
+
+// For .cpp code
+void ^class$::on_activate( wxActivateEvent & event )
+{
+	if( event.GetActive() )
+	{
+	}
+	else
+	{
+	}
+}

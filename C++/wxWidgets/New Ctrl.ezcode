@@ -1,0 +1,105 @@
+text.ctrl_name: Ctrl name
+text.access_name[..]: Accessor name (e.g. m., x. or empty)
+text.parent_name[..]: Parent name
+text.sizer_name[..]: Sizer name
+radiogroup.ctrl_type: Ctrl type
+radio.ctrl_type.splitter: Splitter
+radio.ctrl_type.sizer: Box sizer
+radio.ctrl_type.panel: Panel
+radio.ctrl_type.static_text[on]: Static text
+radio.ctrl_type.text: Text
+radio.ctrl_type.button: Button
+radio.ctrl_type.checkbox: Checkbox
+radio.ctrl_type.listbox: Listbox
+checkbox.id_in[..]: Use wxID_ANY
+expr.id: ^ id_in ?wxID_ANY?ID_^ lstrip[^ uc[^ ctrl_name $] $,P_]$$ 
+.
+^ ctrl_type.splitter ?
+	// For class
+		wxSplitterWindow * ^ ctrl_name $;
+
+	// For creation method
+		^ access_name $^ ctrl_name $ = new wxSplitterWindow( ^ access_name $^ parent_name $, ^ id $ );
+		
+		// Create child panels here
+
+		^ access_name $^ ctrl_name $->SplitVertically( p_panel_left, p_panel_right, 200 );
+		^ access_name $^ ctrl_name $->SplitHorizontally( p_panel_top, p_panel_bottom, 200 );
+$
+^ ctrl_type.sizer ?
+		wxBoxSizer * ^ sizer_name $ = new wxBoxSizer( wxHORIZONTAL / wxVERTICAL );
+$
+^ ctrl_type.panel ?
+	// For class
+		wxPanel * ^ ctrl_name $;
+
+	// For creation method
+		^ access_name $^ ctrl_name $ = new wxPanel( ^ access_name $^ parent_name $, ^ id $ );
+		^ sizer_name $->Add( ^ access_name $^ ctrl_name $ );
+		//^ sizer_name $->AddSpacer( DEFAULT_CTRL_SPACING );
+$
+^ ctrl_type.static_text ?
+	// For class
+		wxStaticText * ^ ctrl_name $;
+
+	// For creation method
+		^ access_name $^ ctrl_name $ = new wxStaticText(
+										^ access_name $^ parent_name $,
+										^ id $,
+										mk_lcl( "TODO" ),
+										wxDefaultPosition,
+										wxDefaultSize,
+										wxTE_MULTILINE | wxTE_PROCESS_TAB );
+		^ sizer_name $->Add( ^ access_name $^ ctrl_name $ );
+		//^ sizer_name $->AddSpacer( DEFAULT_CTRL_SPACING );
+$
+^ ctrl_type.text ?
+	// For class
+		wxTextCtrl * ^ ctrl_name $;
+
+	// For creation method
+		^ access_name $^ ctrl_name $ = new wxTextCtrl(
+										^ access_name $^ parent_name $,
+										^ id $,
+										wxT(""),
+										wxDefaultPosition,
+										wxDefaultSize,
+										wxTE_MULTILINE | wxTE_RICH2 | wxTE_DONTWRAP | wxTE_PROCESS_TAB );
+		^ sizer_name $->Add( ^ access_name $^ ctrl_name $ );
+		//^ sizer_name $->AddSpacer( DEFAULT_CTRL_SPACING );
+$
+^ ctrl_type.button ?
+	// For class
+		wxButton * ^ ctrl_name $;
+
+	// For creation method
+		^ access_name $^ ctrl_name $ = new wxButton( ^ access_name $^ parent_name $, ^ id $, mk_lcl( "TODO" ) );
+		^ sizer_name $->Add( ^ access_name $^ ctrl_name $ );
+		//^ sizer_name $->AddSpacer( DEFAULT_CTRL_SPACING );
+$
+^ ctrl_type.checkbox ?
+	// For class
+		wxCheckBox * ^ ctrl_name $;
+
+	// For creation method
+		^ access_name $^ ctrl_name $ = new wxCheckBox( ^ access_name $^ parent_name $, ^ id $, mk_lcl("TODO") );
+		^ sizer_name $->Add( ^ access_name $^ ctrl_name $ );
+		//^ sizer_name $->AddSpacer( DEFAULT_CTRL_SPACING );
+		//^ ctrl_name $->SetValue( true );
+$
+^ ctrl_type.listbox ?
+	// For class
+		wxListBox * ^ ctrl_name $;
+
+	// For creation method
+		^ access_name $^ ctrl_name $ = new wxListBox(
+											^ access_name $^ parent_name $, 
+											^ id $,
+											wxDefaultPosition,
+											wxSize( 350, 80 ),
+											0,
+											0,
+											wxLB_EXTENDED );
+		^ sizer_name $->Add( ^ access_name $^ ctrl_name $, 1, wxEXPAND );
+		//^ sizer_name $->AddSpacer( DEFAULT_CTRL_SPACING );
+$

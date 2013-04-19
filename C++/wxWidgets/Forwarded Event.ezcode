@@ -1,0 +1,58 @@
+text.frame_class[..]: Frame class name
+text.method[on_]: Method name
+radiogroup.event_type: Event type
+radio.event_type.button[on]: Button press
+radio.event_type.text: Text change
+radio.event_type.checkbox: Checkbox change
+radio.event_type.listbox: Listbox change
+radio.event_type.menu: Menu event
+text.id[wxID_ANY]: Control Id (leave empty to ignore)
+checkbox.want_forwarding[..]: Forward event to handler class
+text.inter_class[..]: Intermediate class (maybe empty)
+text.logic_class[..]: Logic class name
+text.logic_args: Arguments for logic method (maybe empty)
+map.button_handler: EVT_BUTTON
+map.button_event: wxCommandEvent
+map.text_handler: EVT_TEXT
+map.text_event: wxCommandEvent
+map.checkbox_handler: EVT_CHECKBOX
+map.checkbox_event: wxCommandEvent
+map.listbox_handler: EVT_LISTBOX
+map.listbox_event: wxCommandEvent
+map.menu_handler: EVT_MENU
+map.menu_event: wxCommandEvent
+.
+// For ^frame_class$.h class definition
+	void ^method$( ^map[^event_type$_event]$ & r_event );
+
+// For ^frame_class$ event table
+	^map[^event_type$_handler]$( ^id?^id$, $^frame_class$::^method$ )
+
+// For ^frame_class$ .cpp code
+void ^frame_class$::^method$( ^map[^event_type$_event]$ & r_event )
+{
+^ want_forwarding ?
+	m.^ inter_class ?gui?logic$.^method$();
+$
+}
+^ want_forwarding ?
+
+^ inter_class ?
+// For ^inter_class$.h
+	void ^method$();
+
+// For ^inter_class$ .cpp code
+void ^inter_class$::^method$()
+{
+	m.r_logic.^method$(^logic_args? ^logic_args$ $);
+}
+
+$
+// For ^logic_class$ .h code
+	void ^method$(^logic_args? ^logic_args$ $);
+
+// For ^logic_class$ .cpp code
+void ^logic_class$::^method$(^logic_args? ^logic_args$ $)
+{
+}
+$

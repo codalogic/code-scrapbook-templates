@@ -21,22 +21,42 @@ map.listbox_handler: EVT_LISTBOX
 map.listbox_event: wxCommandEvent
 map.menu_handler: EVT_MENU
 map.menu_event: wxCommandEvent
+radiogroup.show: Show
+radio.show.all: All Code
+radio.show.hgui: .h GUI File
+radio.show.cppeventtable: .cpp Event Table Entry
+radio.show.cpphandler: .cpp Handler
+radio.show.hlogic: .h Logic File
+radio.show.cpplogic: .cpp Logic File
 .
+^ show.all ?
 // For ^frame_class$.h class definition
+$
+^ show.hgui | show.all ?
 	void ^method$( ^map[^event_type$_event]$ & r_event );
+$
+^ show.all ?
 
 // For ^frame_class$ event table
+$
+^ show.cppeventtable | show.all ?
 	^map[^event_type$_handler]$( ^id?^id$, $^frame_class$::^method$ )
+$
+^ show.all ?
 
 // For ^frame_class$ .cpp code
+$
+^ show.cpphandler | show.all ?
 void ^frame_class$::^method$( ^map[^event_type$_event]$ & r_event )
 {
 ^ want_forwarding ?
 	m.^ inter_class ?gui?logic$.^method$();
 $
 }
+$
 ^ want_forwarding ?
 
+^ show.all ?
 ^ inter_class ?
 // For ^inter_class$.h
 	void ^method$();
@@ -48,11 +68,20 @@ void ^inter_class$::^method$()
 }
 
 $
+$
+^ show.all ?
 // For ^logic_class$ .h code
+$
+^ show.hlogic | show.all ?
 	void ^method$(^logic_args? ^logic_args$ $);
+$
+^ show.all ?
 
 // For ^logic_class$ .cpp code
+$
+^ show.cpplogic | show.all ?
 void ^logic_class$::^method$(^logic_args? ^logic_args$ $)
 {
 }
+$
 $
